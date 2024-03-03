@@ -15,6 +15,16 @@ router.post('/post',async (req,res)=>{
     }
 });
 
+router.get('/get',async (req,res)=>{
+    try{
+        const data = await Model.find().limit(1).sort({$natural:-1});
+        res.status(200).json(data);
+    }
+    catch(error){
+        res.send(400).json({message:error.message});
+    }
+})
+
 module.exports = router;
 
 
